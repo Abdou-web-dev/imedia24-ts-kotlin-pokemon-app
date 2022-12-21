@@ -1,0 +1,54 @@
+@mixin d_flex {
+  //code that repeats
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.poke-home-container {
+  position: relative;
+  .poke-home-container-inner {
+    .pokemon-home-header {
+      @include d_flex;
+      p {
+        color: rgb(134, 73, 73);
+        font-family: "Mulish";
+        font-size: 20px;
+        font-weight: bold;
+        // font-style: italic;
+        letter-spacing: 2px;
+      }
+      span {
+        color: rgb(134, 102, 73);
+        font-family: "Mulish";
+        font-size: 26px;
+        // font-weight: bold;
+        // font-style: italic;
+        letter-spacing: 2px;
+      }
+    }
+    .poke-home-top-spinner {
+      @include d_flex;
+
+      div.poke-home-top-spinner-text {
+        span {
+          color: white;
+          font-family: "Inconsolata";
+          font-size: 30px;
+          font-weight: bold;
+          font-style: italic;
+        }
+      }
+    }
+    .poke-home-loading-spinner {
+      position: absolute;
+      bottom: 400px;
+      left: 700px;
+      .ant-spinner {
+        transform: scale(2);
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+//defining screen breakpoints for responsivness
+$x-small: 0px;
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+$x-large: 1200px;
+$xx-large: 1400px;
+
+.poke-collection-container {
+  margin-top: 70px;
+  .poke-collection-container-inner {
+    //by default, xxl rule is applied
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    @media screen and (min-width: $large) and (max-width: $x-large) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .poke-collection-container-inner-pokemon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+// $small: 300px;
+// $medium: 900px;
+
+// .smth {
+//   //some CSS
+//   @media screen and (max-width: $small) {
+//     //do Smth
+//   }
+//   @media screen and (min-width: $medium) {
+//     //do Smth
+//   }
+// }

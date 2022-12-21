@@ -1,0 +1,68 @@
+.pokemon-element-container {
+  .pokemon-element-btn {
+    width: 200px;
+    border: none;
+    background: none;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      img {
+        transform: scale(1.2);
+      }
+    }
+    p.pokemon-id {
+      color: white;
+      font-family: "Mulish";
+      font-size: 25px;
+    }
+    p.pokemon-name {
+      color: gray;
+      font-family: "Inconsolata";
+      font-size: 25px;
+    }
+    img.pokemon-avatar {
+    }
+    p.pokemon-type {
+      span.poke-type {
+        font-family: "Mulish";
+        font-size: 18px;
+        font-style: italic;
+      }
+      span.type-text {
+        font-family: "Mulish";
+        font-size: 18px;
+      }
+    }
+  }
+  &.pokemon-type-grass {
+    background: rgba(255, 0, 0, 0.348);
+    span,
+    p,
+    p.pokemon-name {
+      color: white;
+    }
+  }
+  &.pokemon-type-fire {
+    background: #e25822;
+    span,
+    p,
+    p.pokemon-name {
+      color: white;
+    }
+  }
+  &.pokemon-type-bug {
+    background: rgba(164, 107, 107, 0.348);
+    span,
+    p,
+    p.pokemon-name {
+      color: white;
+    }
+  }
+  &.pokemon-type-water {
+    background: #d4f1f9;
+    span,
+    p,
+    p.pokemon-name {
+      color: black;
+    }
+  }
+}
