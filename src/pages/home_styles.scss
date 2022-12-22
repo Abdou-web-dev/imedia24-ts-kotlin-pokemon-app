@@ -1,3 +1,11 @@
+//defining screen breakpoints for responsivness
+$x-small: 0px;
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+$x-large: 1200px;
+$xx-large: 1400px;
+
 @mixin d_flex {
   //code that repeats
   display: flex;
@@ -28,13 +36,20 @@
         // font-style: italic;
         letter-spacing: 2px;
       }
+      @media screen and (max-width: $large) {
+        p,
+        span {
+          text-align: center;
+          // border: 1px solid;
+        }
+      }
     }
     .poke-home-top-spinner {
       @include d_flex;
 
       div.poke-home-top-spinner-text {
         span {
-          color: white;
+          color: black;
           font-family: "Inconsolata";
           font-size: 30px;
           font-weight: bold;

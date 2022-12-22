@@ -5,6 +5,13 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+//defining screen breakpoints for responsivness
+$x-small: 0px;
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+$x-large: 1200px;
+$xx-large: 1400px;
 
 .poke-intro-container {
   display: flex;
@@ -40,11 +47,15 @@
 
   .poke-intro-container-welcome {
     margin: 25px 0px;
-    // margin-bottom: 0px;
     p {
       color: black;
       font-family: "Mulish";
       font-size: 25px;
+    }
+    @media screen and (max-width: $small) {
+      p {
+        text-align: center;
+      }
     }
   }
   .poke-intro-container-pokeball-anim {

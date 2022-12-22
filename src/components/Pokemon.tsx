@@ -1,7 +1,9 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
+import { useStyleMediaQuery } from "../hooks/UseMediaQuery";
 import { PokemonType } from "../interface";
 import { PokemonInfos } from "./PokemonInfos";
+import { PokemonInfosMobile } from "./PokemonInfosMobile";
 import "./poke_styles.scss";
 
 interface PokemonProps {
@@ -22,10 +24,15 @@ const Pokemon = ({
   index,
 }: PokemonProps) => {
   const [openModal, setopenModal] = useState<boolean>(false);
-
+  const { matches: isMobile } = useStyleMediaQuery("max", "width", 520); //520px and less
+  const { matches: isSmall } = useStyleMediaQuery("max", "width", 480); //to hide the modal title on very small screens
+  // const { matches: imSmall } = useStyleMediaQuery("max", "width", 400);
+  let isDesktop = !isMobile;
   return (
     <div className={`pokemon-element-container pokemon-type-${type} `}>
+      {/* the pokemons are colored via css according to their type */}
       <Button
+        data-testid="openModalBtn"
         className="pokemon-element-btn"
         style={{ height: `fit-content` }}
         onClick={() => setopenModal(true)}
@@ -39,7 +46,8 @@ const Pokemon = ({
         </p>
       </Button>
       <Modal
-        className=""
+        data-testid="theModal"
+        className="pokemon-modal"
         open={openModal}
         maskClosable={true}
         closable={true}
@@ -47,11 +55,15 @@ const Pokemon = ({
         mask={true}
         onOk={() => setopenModal(false)}
         onCancel={() => setopenModal(false)}
-        width={"60%"}
+        // width={"60%"}
         footer={null}
-        title={`Details about this pokemon :`}
+        title={isSmall ? `` : `Details about this pokemon :`}
       >
-        <PokemonInfos {...{ pokemon }}></PokemonInfos>
+        {isDesktop ? (
+          <PokemonInfos {...{ pokemon }}></PokemonInfos>
+        ) : isMobile ? (
+          <PokemonInfosMobile {...{ pokemon }}></PokemonInfosMobile>
+        ) : null}
       </Modal>
     </div>
   );
