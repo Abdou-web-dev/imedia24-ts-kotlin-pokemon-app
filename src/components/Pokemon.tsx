@@ -13,6 +13,7 @@ interface PokemonProps {
   type: string;
   pokemon: PokemonType;
   index: number;
+  dataTestid: string;
 }
 
 const Pokemon = ({
@@ -22,6 +23,7 @@ const Pokemon = ({
   type,
   pokemon,
   index,
+  dataTestid,
 }: PokemonProps) => {
   const [openModal, setopenModal] = useState<boolean>(false);
   const { matches: isMobile } = useStyleMediaQuery("max", "width", 520); //520px and less
@@ -29,7 +31,10 @@ const Pokemon = ({
   // const { matches: imSmall } = useStyleMediaQuery("max", "width", 400);
   let isDesktop = !isMobile;
   return (
-    <div className={`pokemon-element-container pokemon-type-${type} `}>
+    <div
+      data-testid={dataTestid}
+      className={`pokemon-element-container pokemon-type-${type} `}
+    >
       {/* the pokemons are colored via css according to their type */}
       <Button
         data-testid="openModalBtn"
@@ -38,7 +43,9 @@ const Pokemon = ({
         onClick={() => setopenModal(true)}
       >
         <p className="pokemon-id"> # {index} </p>
-        <p className="pokemon-name"> {name} </p>
+        <p role={`poke-name`} className="pokemon-name">
+          {name}
+        </p>
         <img className="pokemon-avatar" src={pokeAvatar} alt={name} />
         <p className="pokemon-type">
           <span className="type-text">Type : </span>

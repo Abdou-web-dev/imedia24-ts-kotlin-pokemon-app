@@ -28,3 +28,23 @@ Jest runs the unit tests and Selenium provides and automates the grounds for cro
 React is one of the most popular front-end frameworks today. Just like other frameworks, it has a set of tools for debugging called React Developer Tools (React DevTools).17 mai 2022
 
 <!-- https://jsonplaceholder.typicode.com/todos -->
+
+I agree with your statements about Redux. The problem honestly is the way it's used.
+
+If used to only store state that is actually global, it's fine. However, I think most of the time a lot of us like to default to throwing things into the global store to avoid prop drilling.
+
+You can simply use context these days to avoid prop drilling. We've been replacing our application at work from Redux and moving towards using useState and useReducer, along with context. It's been fantastic.
+
+If you're interested, you can check out my pattern for React Context
+
+\*\*
+I've been doing the same thing on all of my projects, moving to pure useReducer, useContext, and useState. I am sure there are legit cases for Redux but I think it's for a select few, really complex applications.
+
+If you haven't tried react-query or similar library, I'd encourage you to try them out as well. It handles the data layer really cleanly and independently from context.
+
+\*\*
+Redux is not a framework or a technology. It's an architecture pattern and a damn good one at that. So much so, that facebook includes the useReducer hook in React's top level APIs.
+
+I agree that there is a tendency in the community to use redux before it becomes necessary and to do so without understanding the benefits it provides. However, to suggest SWR and and React Query as an alternative to redux is harmful and MISLEADING. You could pair them with redux to form a pretty effective stack.
+
+I have shipped complex production apps with and without using redux. It usually depends on the use case, app's requirements and complexity in the application's state management. I've found that in applications where redux is not a good fit, apollo client is. This is because apollo client utilizes a normalized state in to form of apollo cache. Apollo client sort of abstracts out the custom plumbing you would otherwise have to write if you were using redux and if the out of the box features in apollo client are enough for you, it may just be enough. Some of those apps still benefit from redux like patterns though, like using the useReducer hook in complex components.

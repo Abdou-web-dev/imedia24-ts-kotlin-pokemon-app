@@ -12,7 +12,7 @@ const Intro = () => {
   return (
     <div className="poke-intro-container">
       <div className="poke-intro-container-welcome">
-        <p>Welcome to this Pokemon React App : </p>
+        <p role={`welcome`}>Welcome to this Pokemon React App : </p>
       </div>
       <div className="poke-intro-container-pokeball-anim">
         <div

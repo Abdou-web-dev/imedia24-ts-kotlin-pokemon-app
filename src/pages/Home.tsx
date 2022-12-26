@@ -85,8 +85,15 @@ const Home = () => {
     <div className="poke-home-container">
       <div className="poke-home-container-inner">
         <>
-          <header className="pokemon-home-header">
-            <p>Here is the list of available pokemons :</p>
+          <header role={"home-header"} className="pokemon-home-header">
+            <p
+              //these 3 attributes are intended to be used for test purposes
+              role={"role-p-tag"}
+              data-testid="home-par-text"
+              className="pokemon-home-header-p"
+            >
+              Here is the list of available pokemons :
+            </p>
             <span>
               Scrol down to the bottom of the page to load more pokemons...
             </span>
