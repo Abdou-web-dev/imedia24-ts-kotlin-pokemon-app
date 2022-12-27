@@ -30,7 +30,11 @@ const Intro = () => {
           <div className="poke-intro-go-btn-wrapper">
             {showGoBtn ? (
               <Link to={`/home`} className="poke-intro-go-btn-wrapper-link">
-                <Button className="poke-intro-go-btn">
+                <Button
+                  aria-label="go-btn-label"
+                  role={`go-btn`}
+                  className="poke-intro-go-btn"
+                >
                   <span>{`Go`}</span>
                 </Button>
               </Link>
@@ -41,6 +45,10 @@ const Intro = () => {
       <div className="poke-intro-container-btn">
         <Link to={`/home`} className="poke-intro-container-link">
           <Button
+            //for cypress e2e test
+            role="begin-role-btn"
+            data-testid="begin-btn-id"
+            aria-label="begin-btn-label"
             className="poke-intro-btn"
             onMouseOver={() => {
               setshowIcon(true);

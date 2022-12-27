@@ -41,6 +41,7 @@ const Pokemon = ({
         className="pokemon-element-btn"
         style={{ height: `fit-content` }}
         onClick={() => setopenModal(true)}
+        role="pokemon-btn"
       >
         <p className="pokemon-id"> # {index} </p>
         <p role={`poke-name`} className="pokemon-name">
@@ -53,6 +54,7 @@ const Pokemon = ({
         </p>
       </Button>
       <Modal
+        // closeIcon
         data-testid="theModal"
         className="pokemon-modal"
         open={openModal}

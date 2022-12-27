@@ -2,7 +2,10 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Spin } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { CustomSpin } from "../components/CustomSpin";
+import { CustomSpinner } from "../components/CustomSpinner";
 import PokemonCollection from "../components/PokemonCollection";
+import { useStyleMediaQuery } from "../hooks/UseMediaQuery";
 import { PokemonType } from "../interface";
 import "./home_styles.scss";
 
@@ -18,6 +21,7 @@ const Home = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const getPokemon = async () => {
+    let isMounted = true;
     const res = await axios.get(
       "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
     );
@@ -28,10 +32,22 @@ const Home = () => {
         `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
       );
       // console.log(poke);
-      setPokemons((p) => [...p, poke.data]);
+      if (isMounted) {
+        setPokemons((p) => [...p, poke.data]);
+      }
       setLoading(false);
     });
+    return () => {
+      isMounted = false; //this prevents the data from being loaded when the component unmouts
+    };
   };
+
+  // console.log(pokemons);
+  useEffect(() => {
+    setTimeout(() => {
+      getPokemon();
+    }, 500);
+  }, []);
 
   const handleScroll = () => {
     if (
@@ -54,13 +70,6 @@ const Home = () => {
   }, [nextUrl]);
   //the infinite scroll was not working at first, because I forgot to add nexUrl as a dependency in the useEffet above
 
-  // console.log(pokemons);
-  useEffect(() => {
-    setTimeout(() => {
-      getPokemon();
-    }, 500);
-  }, []);
-
   const nextPage = async () => {
     let res = await axios.get(nextUrl);
     setNextUrl(res.data.next);
@@ -80,6 +89,10 @@ const Home = () => {
       }}
     />
   );
+
+  const { matches: isMobile } = useStyleMediaQuery("max", "width", 720); //520px and less
+
+  let isDesktop = !isMobile;
 
   return (
     <div className="poke-home-container">
@@ -104,29 +117,47 @@ const Home = () => {
             <PokemonCollection pokemons={pokemons} />
           ) : (
             <div className="poke-home-top-spinner">
-              <Spin
-                className="ant-top-spinner"
-                style={{ marginBottom: `0px` }}
-                spinning={true}
-                indicator={antIcon}
-              />
-              <div className="poke-home-top-spinner-text">
-                <span>Wait , fetching the pokemons...</span>
+              {/* Spinner at the top of the page */}
+
+              {/* text next to the spinner */}
+              <div className="poke-home-top-spinner-inner">
+                {isDesktop ? (
+                  <div className="poke-home-top-spinner-wrapper">
+                    <span className="poke-home-top-spinner-text">
+                      Wait , fetching the pokemons...
+                    </span>
+                    <CustomSpinner></CustomSpinner>
+                  </div>
+                ) : isMobile ? (
+                  <div className="poke-home-top-spinner-wrapper">
+                    <span className="poke-home-top-spinner-text">
+                      Wait , fetching the pokemons...
+                    </span>
+                    <CustomSpin></CustomSpin>
+                  </div>
+                ) : null}
               </div>
             </div>
           )}
         </>
 
         <>
-          {/* show this spinner Icon at the center of the page while fetching next pokemons */}
+          {/* show this spinner Icon at the center of the page while fetching next pokemons, on scroll */}
           {loading && (
             <div className="poke-home-loading-spinner">
-              <Spin
-                className="ant-spinner"
-                style={{ marginBottom: `0px` }}
-                spinning={true}
-                indicator={antIcon}
-              />
+              {isDesktop ? (
+                <Spin
+                  className="ant-spinner"
+                  style={{ marginBottom: `0px` }}
+                  spinning={true}
+                  indicator={antIcon}
+                />
+              ) : isMobile ? (
+                <CustomSpinner
+                  {...{ isMobile }}
+                  id="custom-spinner"
+                ></CustomSpinner>
+              ) : null}
             </div>
           )}
         </>

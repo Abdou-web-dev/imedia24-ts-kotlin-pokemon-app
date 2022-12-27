@@ -47,6 +47,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/cypress": "^9.0.0",
+    "cypress": "^12.2.0",
     "file-loader": "^6.2.0"
   }
 }

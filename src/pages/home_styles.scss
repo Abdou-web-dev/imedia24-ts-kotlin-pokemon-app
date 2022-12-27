@@ -46,14 +46,17 @@ $xx-large: 1400px;
     }
     .poke-home-top-spinner {
       @include d_flex;
-
-      div.poke-home-top-spinner-text {
-        span {
-          color: black;
-          font-family: "Inconsolata";
-          font-size: 30px;
-          font-weight: bold;
-          font-style: italic;
+      .poke-home-top-spinner-inner {
+        .poke-home-top-spinner-wrapper {
+          // border: 1px solid red;
+          @include d_flex;
+          span.poke-home-top-spinner-text {
+            color: black;
+            font-family: "Inconsolata";
+            font-size: 30px;
+            font-weight: bold;
+            font-style: italic;
+          }
         }
       }
     }
@@ -63,6 +66,25 @@ $xx-large: 1400px;
       left: 700px;
       .ant-spinner {
         transform: scale(2);
+
+        @media screen and (min-width: $medium) and (max-width: $large) {
+          // margin-right: 200px;
+          position: relative;
+          right: 200px;
+        }
+        @media screen and (min-width: $small) and (max-width: $medium) {
+          // margin-right: 200px;
+          position: relative;
+          right: 400px;
+        }
+      }
+      #custom-spinner {
+        @media screen and (min-width: 600px) and (max-width: 720px) {
+          margin-left: 100px;
+        }
+        @media screen and (min-width: 500px) and (max-width: 600px) {
+          margin-left: 50px;
+        }
       }
     }
   }
