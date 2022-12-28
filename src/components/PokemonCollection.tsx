@@ -18,6 +18,7 @@ const PokemonCollection = ({ pokemons }: PokemonCollectionProps) => {
                 className="poke-collection-container-inner-pokemon"
               >
                 <Pokemon
+                  // selectedPokemon={pokemon.sprites.front_default[index]}
                   dataTestid="pokemon-component"
                   name={pokemon.name}
                   id={pokemon.id}

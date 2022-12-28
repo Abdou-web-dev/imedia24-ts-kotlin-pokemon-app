@@ -21,10 +21,11 @@ const Home = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const getPokemon = async () => {
-    let isMounted = true;
+    let isMounted: boolean = true;
     const res = await axios.get(
       "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
     );
+
     console.log(res.data.results);
     setNextUrl(res.data.next);
     res.data.results.forEach(async (pokemon: Pokemons) => {
@@ -97,6 +98,7 @@ const Home = () => {
   return (
     <div className="poke-home-container">
       <div className="poke-home-container-inner">
+        {/* header */}
         <>
           <header role={"home-header"} className="pokemon-home-header">
             <p
@@ -112,6 +114,8 @@ const Home = () => {
             </span>
           </header>
         </>
+
+        {/* PokemonCollection */}
         <>
           {pokemons?.length !== 0 ? (
             <PokemonCollection pokemons={pokemons} />
@@ -141,6 +145,7 @@ const Home = () => {
           )}
         </>
 
+        {/* loading Spinner */}
         <>
           {/* show this spinner Icon at the center of the page while fetching next pokemons, on scroll */}
           {loading && (
@@ -161,10 +166,11 @@ const Home = () => {
             </div>
           )}
         </>
-        {/* <button onClick={nextPage}>Charger</button> */}
       </div>
     </div>
   );
 };
 
 export default Home;
+
+/* <button onClick={nextPage}>Charger</button> */

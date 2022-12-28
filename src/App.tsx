@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
 import Intro from "./pages/Intro";
 
+// must use REDUX !!!!!!!!!!!
 const App = () => {
   return (
     <div className="App">

@@ -45,6 +45,31 @@ $xx-large: 1400px;
     }
   }
 
+  .poke-intro-start-container-btn {
+    .poke-intro-start-container-link {
+      text-decoration: none;
+
+      .poke-start-btn {
+        background: none;
+        height: fit-content;
+        gap: 10px;
+        background: rgb(100, 171, 100);
+        padding: 10px 15px;
+        &:hover {
+          border: 1px solid gray;
+          background: rgb(72, 135, 72);
+        }
+        span {
+          color: white;
+          font-family: "Mulish";
+          font-size: 20px;
+          text-transform: uppercase;
+          letter-spacing: 3.5px;
+        }
+      }
+    }
+  }
+
   .poke-intro-container-welcome {
     margin: 25px 0px;
     p {
@@ -106,6 +131,47 @@ $xx-large: 1400px;
           height: 60px;
           background: #7f8c8d;
           border: 10px solid #fff;
+          border-radius: 50%;
+          z-index: 10;
+          box-shadow: 0 0 0 10px black;
+          animation: blink 0.5s alternate 7;
+        }
+      }
+      .pokeball-reversed {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background: #fff;
+        border: 10px solid #000;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: inset -10px 10px 0 10px #ccc;
+        animation: fall 0.25s ease-in-out,
+          shake 1.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) 3;
+        &.pokeball-reversed::before,
+        &.pokeball-reversed::after {
+          content: "";
+          position: absolute;
+        }
+        &.pokeball-reversed::before {
+          background: rgb(195, 131, 142);
+          width: 100%;
+          height: 50%;
+        }
+        &.pokeball-reversed::after {
+          top: calc(50% - 10px);
+          width: 100%;
+          height: 20px;
+          background: gray;
+        }
+        .pokeball__button {
+          position: absolute;
+          top: calc(50% - 30px);
+          left: calc(50% - 30px);
+          width: 60px;
+          height: 60px;
+          background: #7f8c8d;
+          border: 10px solid red;
           border-radius: 50%;
           z-index: 10;
           box-shadow: 0 0 0 10px black;

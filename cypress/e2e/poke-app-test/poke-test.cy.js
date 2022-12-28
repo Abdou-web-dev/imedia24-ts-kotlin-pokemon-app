@@ -39,7 +39,8 @@ describe("poke app", () => {
     // cy.findByRole("button", {
     //   name: /# 26 pikachu pikachu type : electric/i,
     // }).click();
-    // cy.get('tbody>tr').eq(0)    // Yield first 'tr' in 'tbody'
-    // cy.get('ul>li').eq(4)       // Yield fifth 'li' in 'ul'
   });
 });
+
+// cy.get('tbody>tr').eq(0)    // Yield first 'tr' in 'tbody'
+// cy.get('ul>li').eq(4)       // Yield fifth 'li' in 'ul'
